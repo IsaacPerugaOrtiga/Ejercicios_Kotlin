@@ -1,18 +1,9 @@
 fun main() {
-    print("Enter the initial type of temperature: ")
-    val typeTemperatureInitial = readln().toString()
-    println("Put the value of the temperature: ")
-    val valueTemperature = readln().toInt()
-    print("Enter a type of temperature to converse that: ")
-    val typeTemperatureFinal = readln().toString()
+    var initialMeasurement: Double = 20.0
 
-    /*when(typeTemperatureFinal){
-        "Kelvin" -> printFinalTemperature(valueTemperature,typeTemperatureInitial,typeTemperatureFinal)
-        "Celsius" -> printFinalTemperature()
-        "Fahrenheit" ->
-        else -> println("That type is not avalable. Temperatures avalables: Kelvin, Celsius, Fahrenheit ")
-
-    }*/
+    printFinalTemperature(initialMeasurement,"Celsius","Fahrenheit", ::celsiusToFahrenheit)
+    printFinalTemperature(initialMeasurement, "Kelvin", "Celsius", ::kelvinToCelsius)
+    printFinalTemperature(initialMeasurement,"Fahrenheit","Kelvin", ::fahrenheitToKelvin)
 }
 
 fun printFinalTemperature(
@@ -24,3 +15,16 @@ fun printFinalTemperature(
     val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement)) // two decimal places
     println("$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit.")
 }
+
+fun celsiusToFahrenheit(celsius: Double): Double {
+    return 1.8 * (celsius) + 32 // 9 / 5  = 1.8
+}
+
+fun kelvinToCelsius(kelvin: Double): Double {
+    return kelvin - 273.15
+}
+
+fun fahrenheitToKelvin(fahrenheit: Double): Double {
+    return 0.56 * (fahrenheit - 32) + 273.15  // 5 / 9 = 0.55555... = 0.56
+}
+
